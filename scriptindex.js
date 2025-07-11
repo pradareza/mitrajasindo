@@ -12,6 +12,41 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update copyright year
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Initialize carousel
+    const dots = document.querySelectorAll('.carousel-dot');
+    const track = document.querySelector('.carousel-track');
+    let currentIndex = 0;
+    let interval;
+    const slideCount = document.querySelectorAll('.carousel-slide').length;
+    const slideDuration = 5000;
+
+    function goToSlide(index) {
+        currentIndex = index;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slideCount;
+        goToSlide(currentIndex);
+    }
+
+    function startAutoSlide() {
+        interval = setInterval(nextSlide, slideDuration);
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            clearInterval(interval);
+            goToSlide(index);
+            startAutoSlide();
+        });
+    });
+
+    startAutoSlide();
+
+
 // Brand Marquee Animation
 const brandsTrack = document.querySelector('.brands-track');
 const brandItems = document.querySelectorAll('.brand-item');
