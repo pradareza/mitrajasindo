@@ -296,14 +296,14 @@ img {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #e5e7eb;
+    background: #000000;
     border: none;
     cursor: pointer;
     transition: all 0.3s;
 }
 
 .carousel-dot.active {
-    background: var(--primary-color);
+    background: var(--primary);
     transform: scale(1.2);
 }
 
