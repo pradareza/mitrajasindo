@@ -497,7 +497,7 @@ img {
 }
 
 .tiktok .card-header i {
-    background: linear-gradient(90deg, #25F4EE, #FE2C55);
+    background: linear-gradient(90deg, #000000);
     color: white;
 }
 
@@ -543,7 +543,7 @@ img {
 }
 
 .tiktok .profile-link {
-    background: linear-gradient(90deg, #25F4EE, #FE2C55);
+    background: linear-gradient(90deg, #000000);
 }
 
 .instagram .profile-link {
