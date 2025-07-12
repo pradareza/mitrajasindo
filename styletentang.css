@@ -248,12 +248,55 @@ img {
 
 .company-info {
     display: none;
-    margin: var(--space-2xl) 0;
-    padding: var(--space-2xl);
-    background: var(--bg-white);
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: var(--space-xl);
+    background-color: var(--bg-white);
     border-radius: var(--rounded-lg);
     box-shadow: var(--shadow-md);
-    animation: fadeIn 0.5s ease-out;
+    border-left: 5px solid;
+    margin-bottom: var(--space-xl);
+}
+
+.company-info.active {
+    display: block;
+}
+
+.company-info h3 {
+    color: var(--secondary);
+    font-size: 1.75rem;
+}
+
+.company-info h3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: var(--secondary);
+}
+
+/* Different color for Andina Jasa Indonesia */
+#andina-info {
+    border-left-color: var(--primary);
+}
+
+#andina-info h3 {
+    color: var(--primary);
+}
+
+#mitra-info {
+    border-left-color: var(--secondary);
+}
+
+#mitra-info h3 {
+    color: var(--secondary);
+}
+
+#andina-info h3::after {
+    background: var(--primary);
 }
 
 @keyframes fadeIn {
@@ -261,107 +304,301 @@ img {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.company-info.active {
-    display: block;
+/* Static Company Info Styles */
+.static-company-info {
+    margin: var(--space-2xl) 0;
+    background: var(--bg-white);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-2xl);
 }
 
-.company-info h2 {
-    color: var(--secondary-dark);
-    margin-bottom: var(--space-lg);
-    text-align: center;
+.info-section {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+    border-bottom: 1px solid var(--border);
+}
+
+.info-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.section-icon {
     font-size: 1.75rem;
-    position: relative;
-    padding-bottom: var(--space-sm);
+    color: var(--primary);
+    background: rgba(59, 130, 246, 0.1);
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--rounded-full);
 }
 
-.company-info h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: var(--primary);
-    border-radius: 2px;
-}
-
-.company-info h3 {
+.info-section h2 {
     color: var(--primary-dark);
-    margin-bottom: var(--space-lg);
-    text-align: center;
-    font-size: 1.75rem;
-    position: relative;
-    padding-bottom: var(--space-sm);
+    font-size: 1.5rem;
+    margin: 0;
 }
 
-.company-info h3::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: var(--secondary);
-    border-radius: 2px;
+.info-section h3 {
+    color: var(--primary);
+    margin: var(--space-lg) 0 var(--space-md);
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
 }
 
-.company-info p {
-    margin-bottom: var(--space-md);
-    line-height: 1.8;
-    color: var(--text);
-    text-align: justify;
+/* Vision & Mission Section */
+.vision-mission .info-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
 }
 
-.company-info ul {
-    margin-bottom: var(--space-lg);
-    padding-left: var(--space-md);
+@media (min-width: 768px) {
+    .vision-mission .info-content {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
-.company-info li {
+.vision-mission ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.vision-mission li {
     margin-bottom: var(--space-sm);
     position: relative;
-    padding-left: var(--space-md);
+    padding-left: var(--space-xl);
     line-height: 1.7;
 }
 
-.company-info li::before {
-    content: '•';
+.vision-mission li i {
     position: absolute;
     left: 0;
     color: var(--primary);
-    font-weight: bold;
 }
 
-.portfolio-link {
+/* Values Section */
+.value-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+@media (min-width: 640px) {
+    .value-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .value-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.value-item {
     text-align: center;
-    margin: var(--space-3xl) 0 var(--space-2xl);
+    padding: var(--space-lg);
+    border-radius: var(--rounded-md);
+    background: var(--bg-light);
+    transition: var(--transition);
 }
 
-.portfolio-btn {
-    background-color: var(--secondary);
-    color: var(--text-on-primary);
-    padding: var(--space-md) var(--space-xl);
+.value-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-sm);
+}
+
+.value-item i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+}
+
+.value-item h4 {
+    color: var(--primary-dark);
+    margin-bottom: var(--space-sm);
+}
+
+.value-item p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Services Section */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+    .service-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.service-item {
+    text-align: center;
+    padding: var(--space-lg) var(--space-md);
     border-radius: var(--rounded-md);
-    text-decoration: none;
-    font-weight: 600;
+    border: 1px solid var(--border);
     transition: var(--transition);
+}
+
+.service-item:hover {
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.service-item i {
+    font-size: 1.75rem;
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+    background: rgba(59, 130, 246, 0.1);
+    width: 3.5rem;
+    height: 3.5rem;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-sm);
-    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
-    border: 2px solid transparent;
+    justify-content: center;
+    border-radius: var(--rounded-full);
 }
 
-.portfolio-btn:hover {
-    background-color: var(--secondary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(239, 68, 68, 0.3);
+.service-item h4 {
+    color: var(--primary-dark);
+    margin-bottom: var(--space-sm);
 }
 
-.portfolio-btn:active {
-    transform: translateY(0);
+.service-item p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Advantages Section */
+.advantage-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .advantage-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.advantage-item {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border-radius: var(--rounded-md);
+    background: var(--bg-light);
+}
+
+.advantage-icon {
+    flex-shrink: 0;
+}
+
+.advantage-icon i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    background: rgba(59, 130, 246, 0.1);
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--rounded-full);
+}
+
+.advantage-text h4 {
+    color: var(--primary-dark);
+    margin-bottom: var(--space-xs);
+}
+
+.advantage-text p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Why Choose Us Section */
+.reasons-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .reasons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .reasons-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.reason-card {
+    padding: var(--space-lg);
+    border-radius: var(--rounded-md);
+    background: var(--bg-light);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.reason-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-sm);
+}
+
+.reason-number {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgba(59, 130, 246, 0.1);
+    line-height: 1;
+}
+
+.reason-card h4 {
+    color: var(--primary-dark);
+    margin-bottom: var(--space-sm);
+    position: relative;
+}
+
+.reason-card p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Portfolio Button */
+.portfolio-btn {
+    background-color: var(--secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    display: inline-block;
+    align-items: center;
 }
 
 
