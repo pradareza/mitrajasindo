@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MitraJasindo - Tentang Kami">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styletentang.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="scripttentang.js" as="script">
+    <title>MitraJasindo - Tentang Kami</title>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header class="brand-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="Pic/MJ.png" alt="MitraJasindo Logo" width="32" height="32" loading="lazy">
+                Mitra<span>Jasindo</span>
+            </a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+                <a href="produk.html"><i class="fas fa-box-open"></i> Produk</a>
+                <a href="tentang.html" class="active" aria-current="page"><i class="fas fa-info-circle"></i> Tentang</a>
+                <a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+            <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+            <a href="produk.html"><i class="fas fa-box-open"></i> Produk</a>
+            <a href="tentang.html" class="active" aria-current="page"><i class="fas fa-info-circle"></i> Tentang</a>
+            <a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a>
+        </nav>
+    </header>
+
+<!-- Main Content -->
+<main class="about-section">
+    <div class="container">
+        <h1>Tentang Perusahaan</h1>
+        
+        <div class="company-selector">
+            <img src="Pic/andina.png" alt="Andina Jasa Indonesia" class="AJI" onclick="showCompany('andina')">
+            <img src="Pic/MJ.png" alt="Mitra Jasindo" class="MJ" onclick="showCompany('mitra')">
+        </div>
+
+<!-- Dynamic Company Descriptions -->
+        <div class="company-info" id="andina-info">
+            <h3>Andina Jasa Indonesia</h3>
+            <p>PT Andina Jasa Indonesia adalah perusahaan induk yang bergerak di bidang mechanical, electrical, dan plumbing (MEP). Didirikan pada tahun 2020, PT Andina Jasa Indonesia berkomitmen untuk menyediakan produk dan layanan berkualitas tinggi kepada pelanggan di berbagai sektor, baik residensial maupun komersial.</p>
+            <p>Dengan dukungan tim profesional yang berpengalaman, perusahaan ini terus berkembang untuk menjadi mitra terpercaya dalam memberikan solusi teknis yang tepat dan solutif.</p>
+        </div>
+        
+        <div class="company-info" id="mitra-info">
+            <h3>Mitra Jasindo</h3>
+            <p>Mitra Jasindo adalah bagian dari PT Andina Jasa Indonesia (AJI) yang merupakan brand khusus yang menangani penyediaan solusi teknis terbaik di bidang water heater, water filtration, sanitary, photovoltaic, portable power station, dan home appliances.</p>
+            <p>Sejak didirikan, Mitra Jasindo telah berkembang menjadi mitra terpercaya bagi pelanggan yang membutuhkan layanan berkualitas, inovatif, dan dapat diandalkan.</p>
+        </div>
+
+            <div class="portfolio-link" style="text-align: center; margin-top: 20px;">
+            <a href="file/CV Mitra Jasindo v4.pdf" target="_blank" class="portfolio-btn">Portofolio</a>
+            </div>
+        
+        <!-- Static Company Information Sections -->
+        <div class="static-company-info">
+            <!-- Vision & Mission Section -->
+            <div class="info-section vision-mission">
+                <div class="section-header">
+                    <i class="fas fa-bullseye section-icon"></i>
+                    <h2>Visi & Misi</h2>
+                </div>
+                <div class="info-content">
+                    <div class="vision">
+                        <h3><i class="fas fa-eye"></i> Visi Kami</h3>
+                        <p>Menjadi perusahaan terkemuka di bidang MEP yang diakui karena inovasi dan kualitas layanan.</p>
+                    </div>
+                    <div class="mission">
+                        <h3><i class="fas fa-tasks"></i> Misi Kami</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Menyediakan layanan perbaikan perangkat teknologi dan water heater yang memenuhi standar internasional.</li>
+                            <li><i class="fas fa-check-circle"></i> Menjamin kualitas melalui kemitraan global dan produk-produk unggulan.</li>
+                            <li><i class="fas fa-check-circle"></i> Mengembangkan layanan yang cepat, profesional, dan terpercaya.</li>
+                            <li><i class="fas fa-check-circle"></i> Membangun hubungan jangka panjang dengan pelanggan dan mitra strategis.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Values Section -->
+            <div class="info-section values">
+                <div class="section-header">
+                    <i class="fas fa-star section-icon"></i>
+                    <h2>Nilai-Nilai Kami</h2>
+                </div>
+                <div class="info-content">
+                    <div class="value-grid">
+                        <div class="value-item">
+                            <i class="fas fa-handshake"></i>
+                            <h4>Integritas</h4>
+                            <p>Kami selalu berpegang pada prinsip kejujuran dan transparansi dalam setiap aspek bisnis.</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>Inovasi</h4>
+                            <p>Terus mengembangkan solusi kreatif untuk memenuhi kebutuhan pelanggan yang selalu berkembang.</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-medal"></i>
+                            <h4>Kualitas</h4>
+                            <p>Komitmen untuk memberikan produk dan layanan dengan standar tertinggi.</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Kolaborasi</h4>
+                            <p>Bekerja sama dengan pelanggan dan mitra untuk mencapai hasil terbaik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Services Section -->
+            <div class="info-section services">
+                <div class="section-header">
+                    <i class="fas fa-cogs section-icon"></i>
+                    <h2>Layanan Kami</h2>
+                </div>
+                <div class="info-content">
+                    <div class="service-grid">
+                        <div class="service-item">
+                            <i class="fas fa-fire"></i>
+                            <h4>Water Heater</h4>
+                            <p>Instalasi dan pemeliharaan sistem pemanas air untuk berbagai kebutuhan.</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-tint"></i>
+                            <h4>Water Filtration</h4>
+                            <p>Solusi penyaringan air untuk rumah tangga dan komersial.</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-bath"></i>
+                            <h4>Sanitary</h4>
+                            <p>Perlengkapan dan sistem sanitasi berkualitas tinggi.</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <h4>Photovoltaic</h4>
+                            <p>Sistem energi terbarukan untuk efisiensi energi.</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-plug"></i>
+                            <h4>Power Station</h4>
+                            <p>Solusi penyediaan daya portabel yang andal.</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-home"></i>
+                            <h4>Home Appliances</h4>
+                            <p>Perangkat rumah tangga untuk kenyamanan sehari-hari.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Advantages Section -->
+            <div class="info-section advantages">
+                <div class="section-header">
+                    <i class="fas fa-trophy section-icon"></i>
+                    <h2>Keunggulan Kami</h2>
+                </div>
+                <div class="info-content">
+                    <div class="advantage-list">
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="advantage-text">
+                                <h4>Tim Profesional</h4>
+                                <p>Dikelola oleh tim ahli berpengalaman di bidang MEP dengan sertifikasi resmi.</p>
+                            </div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="advantage-text">
+                                <h4>Produk Berkualitas</h4>
+                                <p>Bekerja sama dengan brand partner terpercaya untuk menjamin kualitas produk.</p>
+                            </div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="advantage-text">
+                                <h4>Layanan 24/7</h4>
+                                <p>Dukungan pelanggan siap membantu kapan saja Anda membutuhkan.</p>
+                            </div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="advantage-text">
+                                <h4>Garansi Resmi</h4>
+                                <p>Setiap produk dilengkapi dengan garansi resmi dari produsen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Why Choose Us Section -->
+            <div class="info-section why-choose">
+                <div class="section-header">
+                    <i class="fas fa-thumbs-up section-icon"></i>
+                    <h2>Kenapa Memilih Kami</h2>
+                </div>
+                <div class="info-content">
+                    <div class="reasons-grid">
+                        <div class="reason-card">
+                            <div class="reason-number">01</div>
+                            <h4>Pengalaman Luas</h4>
+                            <p>Lebih dari 10 tahun melayani pelanggan di seluruh Indonesia dengan berbagai proyek sukses.</p>
+                        </div>
+                        <div class="reason-card">
+                            <div class="reason-number">02</div>
+                            <h4>Teknologi Mutakhir</h4>
+                            <p>Menggunakan peralatan dan metode terbaru untuk hasil yang optimal.</p>
+                        </div>
+                        <div class="reason-card">
+                            <div class="reason-number">03</div>
+                            <h4>Harga Kompetitif</h4>
+                            <p>Menawarkan solusi berkualitas dengan harga yang bersaing.</p>
+                        </div>
+                        <div class="reason-card">
+                            <div class="reason-number">04</div>
+                            <h4>Layanan Purna Jual</h4>
+                            <p>Dukungan teknis berkelanjutan setelah instalasi selesai.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+</main>
+
+    <!-- Footer -->
+    <footer class="brand-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>
+                        <a href="index.html" class="logo">
+                            <img src="Pic/MJ.png" alt="MitraJasindo Logo" width="32" height="32" loading="lazy">
+                            Mitra<span>Jasindo</span>
+                        </a>
+                    </h3>
+                    <p>Distributor dan Service Center Water Heater terpercaya.</p>
+                    <div class="footer-certificate">
+                        <i class="fas fa-award"></i> Perusahaan Terdaftar & Berizin
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3><span>Kontak</span> Kami</h3>
+                    <address class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Disamping Alfamart, Jl. Kaharuddin Nst No.039, Simpang Tiga, Kec. Bukit Raya, Kota Pekanbaru, Riau 28284</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+6285274998496">+62 852-7499-8496</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:mitrajasindo.cv@gmail.com">mitrajasindo.cv@gmail.com</a></p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h3><span>Media</span> Sosial</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/mitra.jasindo/?fref=mentions&_rdr" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/@waterheaterindonesia/featured" aria-label="Youtube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/6285274998496" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <p class="footer-hours">
+                        <i class="fas fa-clock"></i> Buka: Senin-Sabtu, 08.00-17.00 WIB
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> MitraJasindo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="scripttentang.js"></script>
+
+</body>
+</html>
