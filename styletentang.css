@@ -395,11 +395,6 @@ img {
     gap: var(--space-xl);
 }
 
-@media (min-width: 768px) {
-    .vision-mission .info-content {
-        grid-template-columns: 1fr 1fr;
-    }
-}
 
 .vision-mission ul {
     list-style: none;
@@ -426,17 +421,6 @@ img {
     gap: var(--space-lg);
 }
 
-@media (min-width: 640px) {
-    .value-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .value-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
 
 .value-item {
     text-align: center;
@@ -474,11 +458,6 @@ img {
     gap: var(--space-lg);
 }
 
-@media (min-width: 768px) {
-    .service-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 
 .service-item {
     text-align: center;
@@ -523,11 +502,6 @@ img {
     gap: var(--space-md);
 }
 
-@media (min-width: 768px) {
-    .advantage-list {
-        grid-template-columns: 1fr 1fr;
-    }
-}
 
 .advantage-item {
     display: flex;
@@ -570,17 +544,6 @@ img {
     gap: var(--space-md);
 }
 
-@media (min-width: 768px) {
-    .reasons-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .reasons-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
 
 .reason-card {
     padding: var(--space-lg);
@@ -762,32 +725,158 @@ img {
 }
 
 
-/* Responsive Styles */
-@media (min-width: 768px) {
-    .nav-links {
-        display: flex;
-    }
-    
-    .mobile-menu-btn {
-        display: none;
-    }
-    
-    .footer-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .company-info {
-        padding: 2rem;
-    }
-}
 
-@media (max-width: 600px) {
+/* Mobile-first responsive adjustments */
+@media (max-width: 767px) {
+    /* Base adjustments */
+    body {
+        font-size: 15px;
+    }
+    
+    .about-section h1 {
+        font-size: 1.8rem;
+        margin-bottom: var(--space-xl);
+    }
+    
+    /* Company selector */
     .company-selector {
-        gap: 1rem;
+        gap: var(--space-md);
+        margin: var(--space-xl) 0;
     }
     
     .company-selector img {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
+        border-width: 2px;
+    }
+    
+    /* Company info */
+    .company-info {
+        padding: var(--space-lg);
+        margin-bottom: var(--space-lg);
+    }
+    
+    /* Static info sections */
+    .static-company-info {
+        padding: var(--space-lg);
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-lg);
+    }
+    
+    /* Vision & Mission */
+    .vision-mission li {
+        padding-left: var(--space-lg);
+    }
+    
+    /* Services grid */
+    .service-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    /* Value grid */
+    .value-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Advantage list */
+    .advantage-list {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Reasons grid */
+    .reasons-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Footer adjustments */
+    .footer-grid {
+        gap: var(--space-lg);
+    }
+    
+    .footer-col {
+        margin-bottom: var(--space-lg);
+    }
+    
+    .footer-contact p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Company selector */
+    .company-selector img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    /* Grid adjustments */
+    .value-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .reasons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small mobile devices (portrait) */
+@media (max-width: 480px) {
+    /* Navigation */
+    .logo img {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .logo {
+        font-size: 1rem;
+    }
+    
+    /* Floating WA button */
+    .floating-WA a span {
+        display: none;
+    }
+    
+    .floating-WA a {
+        padding: 8px;
+    }
+    
+    /* Portfolio button */
+    .portfolio-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Company info */
+    .company-info h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Fix for mobile menu scroll */
+@media (max-width: 767px) {
+    body.menu-open {
+        overflow: hidden;
+        height: 100vh;
+    }
+    
+    .mobile-menu {
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
     }
 }
