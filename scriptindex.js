@@ -1,220 +1,178 @@
-// Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle
     const mobileMenuButton = document.querySelector('.mobile-menu-btn');
     const mobileMenu = document.getElementById('mobileMenu');
-    const heroSection = document.querySelector('.hero-section');
     
-    mobileMenuButton.addEventListener('click', function() {
+    function toggleMobileMenu() {
         mobileMenu.classList.toggle('active');
-        this.setAttribute('aria-expanded', mobileMenu.classList.contains('active'));
-        // End of main DOMContentLoaded
-    });
+        mobileMenuButton.setAttribute('aria-expanded', mobileMenu.classList.contains('active'));
+    }
     
+    mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
     // Update copyright year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-// Existing mobile menu and other code...
+    // Carousel functionality
+    const carousel = {
+        track: document.querySelector('.carousel-track'),
+        slides: document.querySelectorAll('.carousel-slide'),
+        prevBtn: document.querySelector('.carousel-arrow.prev'),
+        nextBtn: document.querySelector('.carousel-arrow.next'),
+        currentIndex: 0,
+        isDragging: false,
+        startPosX: 0,
+        currentTranslate: 0,
+        prevTranslate: 0,
 
-// Update copyright year
-document.getElementById('year').textContent = new Date().getFullYear();
+        init() {
+            this.prevBtn.addEventListener('click', () => this.goToPrevSlide());
+            this.nextBtn.addEventListener('click', () => this.goToNextSlide());
+            
+            // Touch events
+            this.track.addEventListener('touchstart', (e) => this.touchStart(e), { passive: false });
+            this.track.addEventListener('touchmove', (e) => this.touchMove(e), { passive: false });
+            this.track.addEventListener('touchend', () => this.touchEnd());
+            
+            // Mouse events
+            this.track.addEventListener('mousedown', (e) => this.touchStart(e));
+            this.track.addEventListener('mousemove', (e) => this.touchMove(e));
+            this.track.addEventListener('mouseup', () => this.touchEnd());
+            this.track.addEventListener('mouseleave', () => this.touchEnd());
+            
+            this.updatePosition();
+        },
 
-// Initialize carousel with arrows and swipe
-const track = document.querySelector('.carousel-track');
-const slides = document.querySelectorAll('.carousel-slide');
-const prevBtn = document.querySelector('.carousel-arrow.prev');
-const nextBtn = document.querySelector('.carousel-arrow.next');
-let currentIndex = 0;
-let isDragging = false;
-let startPosX = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
+        goToPrevSlide() {
+            this.currentIndex = this.currentIndex > 0 ? this.currentIndex - 1 : this.slides.length - 1;
+            this.updatePosition();
+        },
 
-// Set initial position
-updateCarouselPosition();
+        goToNextSlide() {
+            this.currentIndex = this.currentIndex < this.slides.length - 1 ? this.currentIndex + 1 : 0;
+            this.updatePosition();
+        },
 
-// Arrow button event listeners
-prevBtn.addEventListener('click', goToPrevSlide);
-nextBtn.addEventListener('click', goToNextSlide);
+        updatePosition() {
+            this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+        },
 
-// Touch event listeners for mobile
-track.addEventListener('touchstart', touchStart, { passive: false });
-track.addEventListener('touchmove', touchMove, { passive: false });
-track.addEventListener('touchend', touchEnd);
+        touchStart(e) {
+            this.isDragging = true;
+            this.startPosX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+            this.prevTranslate = this.currentIndex * -this.track.offsetWidth;
+            this.currentTranslate = this.prevTranslate;
+            this.track.style.transition = 'none';
+            
+            if (e.type === 'mousedown') e.preventDefault();
+        },
 
-// Mouse event listeners for desktop
-track.addEventListener('mousedown', touchStart);
-track.addEventListener('mousemove', touchMove);
-track.addEventListener('mouseup', touchEnd);
-track.addEventListener('mouseleave', touchEnd);
+        touchMove(e) {
+            if (!this.isDragging) return;
+            
+            const currentPosX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+            const diffX = currentPosX - this.startPosX;
+            this.currentTranslate = this.prevTranslate + diffX;
+            this.track.style.transform = `translateX(${this.currentTranslate}px)`;
+            
+            if (e.type === 'touchmove') e.preventDefault();
+        },
 
-function goToPrevSlide() {
-    if (currentIndex > 0) {
-        currentIndex--;
-    } else {
-        currentIndex = slides.length - 1;
-    }
-    updateCarouselPosition();
-}
+        touchEnd() {
+            if (!this.isDragging) return;
+            this.isDragging = false;
+            
+            const movedBy = this.currentTranslate - this.prevTranslate;
+            if (movedBy < -100 && this.currentIndex < this.slides.length - 1) {
+                this.currentIndex++;
+            } else if (movedBy > 100 && this.currentIndex > 0) {
+                this.currentIndex--;
+            }
+            
+            this.track.style.transition = 'transform 0.5s ease';
+            this.updatePosition();
+        }
+    };
 
-function goToNextSlide() {
-    if (currentIndex < slides.length - 1) {
-        currentIndex++;
-    } else {
-        currentIndex = 0;
-    }
-    updateCarouselPosition();
-}
+    // Brand Marquee
+    const brandMarquee = {
+        track: document.querySelector('.brands-track'),
+        container: document.querySelector('.brands-container'),
+        animationId: null,
+        currentPosition: 0,
+        speed: 1,
+        isPaused: false,
 
-function updateCarouselPosition() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-}
+        init() {
+            // Clone brand items for seamless looping
+            document.querySelectorAll('.brand-item').forEach(item => {
+                this.track.appendChild(item.cloneNode(true));
+            });
+            
+            this.normalizeImageSizes();
+            this.startAnimation();
+            
+            // Event listeners
+            this.container.addEventListener('mouseenter', () => this.stopAnimation());
+            this.container.addEventListener('mouseleave', () => this.startAnimation());
+            window.addEventListener('resize', () => this.normalizeImageSizes());
+        },
 
-function touchStart(e) {
-    if (e.type === 'mousedown') {
-        isDragging = true;
-        startPosX = e.clientX;
-        e.preventDefault();
-    } else {
-        isDragging = true;
-        startPosX = e.touches[0].clientX;
-    }
-    prevTranslate = currentIndex * -track.offsetWidth;
-    currentTranslate = prevTranslate;
-    track.style.transition = 'none';
-}
+        normalizeImageSizes() {
+            const images = document.querySelectorAll('.brand-item img');
+            const targetHeight = 60;
+            
+            images.forEach(img => {
+                
+                // Calculate proportional width
+                const ratio = img.naturalWidth / img.naturalHeight;
+                const targetWidth = targetHeight * ratio;
+                
+                // Apply constrained dimensions
+                img.style.maxHeight = `${targetHeight}px`;
+                img.style.maxWidth = `${targetWidth}px`;
+            });
+        },
 
-function touchMove(e) {
-    if (!isDragging) return;
-    
-    let currentPosX;
-    if (e.type === 'mousemove') {
-        currentPosX = e.clientX;
-    } else {
-        currentPosX = e.touches[0].clientX;
-        e.preventDefault();
-    }
-    
-    const diffX = currentPosX - startPosX;
-    currentTranslate = prevTranslate + diffX;
-    track.style.transform = `translateX(${currentTranslate}px)`;
-}
+        animate() {
+            if (this.isPaused) return;
+            
+            this.currentPosition -= this.speed;
+            
+            // Reset to start when we've scrolled all original items
+            if (this.currentPosition <= -this.track.scrollWidth / 2) {
+                this.currentPosition = 0;
+                this.track.style.transition = 'none';
+                this.track.style.transform = `translateX(${this.currentPosition}px)`;
+                void this.track.offsetWidth; // Force reflow
+            }
+            
+            this.track.style.transition = 'transform 0.5s linear';
+            this.track.style.transform = `translateX(${this.currentPosition}px)`;
+            
+            this.animationId = requestAnimationFrame(() => this.animate());
+        },
 
-function touchEnd() {
-    if (!isDragging) return;
-    isDragging = false;
-    
-    const movedBy = currentTranslate - prevTranslate;
-    if (movedBy < -100 && currentIndex < slides.length - 1) {
-        currentIndex++;
-    } else if (movedBy > 100 && currentIndex > 0) {
-        currentIndex--;
-    }
-    
-    track.style.transition = 'transform 0.5s ease';
-    updateCarouselPosition();
-}
+        startAnimation() {
+            this.isPaused = false;
+            if (!this.animationId) {
+                this.animate();
+            }
+        },
 
+        stopAnimation() {
+            this.isPaused = true;
+            if (this.animationId) {
+                cancelAnimationFrame(this.animationId);
+                this.animationId = null;
+            }
+        }
+    };
 
-// Brand Marquee Animation
-const brandsTrack = document.querySelector('.brands-track');
-const brandItems = document.querySelectorAll('.brand-item');
-const container = document.querySelector('.brands-container');
-
-// Clone brand items for seamless looping
-brandItems.forEach(item => {
-    const clone = item.cloneNode(true);
-    brandsTrack.appendChild(clone);
-});
-
-const items = document.querySelectorAll('.brand-item'); // Now includes clones
-let isPaused = false;
-let animationId;
-let currentPosition = 0;
-const speed = 1; // Adjust speed as needed
-
-function normalizeImageSizes() {
-    const images = document.querySelectorAll('.brand-item img');
-    let maxHeight = 0;
-    let maxWidth = 0;
-    
-    // First pass to find maximum dimensions
-    images.forEach(img => {
-        img.style.height = 'auto';
-        img.style.width = 'auto';
-        maxHeight = Math.max(maxHeight, img.naturalHeight || img.offsetHeight);
-        maxWidth = Math.max(maxWidth, img.naturalWidth || img.offsetWidth);
-    });
-    
-    // Calculate proportional sizes
-    const targetHeight = 60; // From your CSS
-    const targetWidth = (targetHeight / maxHeight) * maxWidth;
-    
-    // Apply consistent sizing
-    images.forEach(img => {
-        img.style.maxHeight = `${targetHeight}px`;
-        img.style.maxWidth = `${targetWidth}px`;
-    });
-}
-
-function animate() {
-    if (isPaused) return;
-    
-    currentPosition -= speed;
-    
-    // When we've scrolled all original items, reset to start
-    if (currentPosition <= -brandsTrack.scrollWidth / 2) {
-        currentPosition = 0;
-        // Jump back without animation
-        brandsTrack.style.transition = 'none';
-        brandsTrack.style.transform = `translateX(${currentPosition}px)`;
-        // Force reflow to ensure the jump happens
-        void brandsTrack.offsetWidth;
-    }
-    
-    // Apply smooth scrolling
-    brandsTrack.style.transition = 'transform 0.5s linear';
-    brandsTrack.style.transform = `translateX(${currentPosition}px)`;
-    
-    animationId = requestAnimationFrame(animate);
-}
-
-function startAnimation() {
-    isPaused = false;
-    if (!animationId) {
-        animate();
-    }
-}
-
-function stopAnimation() {
-    isPaused = true;
-    if (animationId) {
-        cancelAnimationFrame(animationId);
-        animationId = null;
-    }
-}
-
-// Initialize
-normalizeImageSizes();
-startAnimation();
-
-// Pause on hover
-container.addEventListener('mouseenter', stopAnimation);
-container.addEventListener('mouseleave', startAnimation);
-
-// Handle window resize
-window.addEventListener('resize', function() {
-    normalizeImageSizes();
-});
-
-    // Static promo click handler
+    // Static Promos
     const staticPromos = document.querySelectorAll('.static-promo');
-    
     staticPromos.forEach(promo => {
         promo.addEventListener('click', function() {
-            // Get the image source from the clicked promo
-            const imgSrc = this.querySelector('img').src;
-            
-            // Expand the clicked promo
             this.classList.toggle('expanded');
             
             // Collapse other promos
@@ -225,40 +183,48 @@ window.addEventListener('resize', function() {
             });
         });
     });
-});
 
-// Background image rotation code remains the same
-const images = [
-    'Pic/page1.jpeg',
-    'Pic/page2.jpeg',
-    'Pic/page3.jpeg',
-    'Pic/page4.jpeg'
-];
-    
-// Preload images
-images.forEach(img => {
-    new Image().src = img;
-});
+    // Background Image Rotator
+    const bgRotator = {
+        images: [
+            'Pic/page1.jpeg',
+            'Pic/page2.jpeg',
+            'Pic/page3.jpeg',
+            'Pic/page4.jpeg'
+        ],
+        current: 0,
+        element: document.querySelector('.hero-section'),
+        interval: null,
 
-let current = 0;
-const elem = document.querySelector('.hero-section');
-    
-// Set initial background
-if (images.length > 0) {
-    elem.style.backgroundImage = `url('${images[0]}')`;
-}
-    
-function changeBackground() {
-    if (images.length === 0) return;
-    
-    current = (current + 1) % images.length;
-    elem.style.backgroundImage = `url('${images[current]}')`;
-    
-    // Force redraw (helps with transition)
-    void elem.offsetWidth;
-}
-    
-// Change every 5 seconds only if we have multiple images
-if (images.length > 1) {
-    setInterval(changeBackground, 5000);
-}
+        init() {
+            if (this.images.length === 0) return;
+            
+            // Preload images
+            this.images.forEach(img => new Image().src = img);
+            
+            // Set initial background
+            this.element.style.backgroundImage = `url('${this.images[0]}')`;
+            
+            // Start rotation if multiple images
+            if (this.images.length > 1) {
+                this.interval = setInterval(() => this.changeBackground(), 5000);
+            }
+        },
+
+        changeBackground() {
+            this.current = (this.current + 1) % this.images.length;
+            this.element.style.backgroundImage = `url('${this.images[this.current]}')`;
+            void this.element.offsetWidth; // Force redraw
+        }
+    };
+
+    // Initialize all components
+    carousel.init();
+    brandMarquee.init();
+    bgRotator.init();
+
+    // Run image normalization after all assets load
+    window.addEventListener('load', () => {
+        brandMarquee.normalizeImageSizes();
+    });
+});
