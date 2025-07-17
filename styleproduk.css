@@ -78,6 +78,35 @@ img {
     height: auto;
 }
 
+
+/* Floating Action Button */
+.floating-WA {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+}
+.floating-WA a {
+  background: #ffffff;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+.floating-WA a:hover {
+  transform: translateY(-3px);
+}
+.floating-WA img {
+  width: 40px;
+  height: 40px;
+}
+
+
 /* Utility Classes */
 .container {
     width: 100%;
