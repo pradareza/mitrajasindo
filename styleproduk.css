@@ -157,9 +157,9 @@ img {
 }
 
 .logo img {
-    background-color: #f0f0f0; /* Light gray */
+    background-color: #f0f0f0; 
     padding: 6px;
-    border-radius: 50%; /* Makes it a circle */
+    border-radius: 50%; 
     height: 4rem;
     width: 4rem;
     object-fit: contain;
@@ -638,5 +638,14 @@ iframe {
     
     .modal-btn {
         width: 100%;
+    }
+
+        /* Floating WA button */
+    .floating-WA a span {
+        display: none;
+    }
+    
+    .floating-WA a {
+        padding: 8px;
     }
 }
