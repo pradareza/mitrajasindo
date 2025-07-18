@@ -1,3 +1,8 @@
+/**
+ * tentang Page Script
+ * Handles toggles for company information and mobile menu
+ */
+
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.querySelector('.mobile-menu-btn');
@@ -11,12 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update copyright year
     document.getElementById('year').textContent = new Date().getFullYear();
     
-    // Add keyboard event listener for Escape key
+    // Add keyboard event listener for Escape key, back button
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
             hideCompanyInfo();
         }
     });
+    document.addEventListener('backbutton', function(event) {
+        event.preventDefault();
+        hideCompanyInfo();
+    }, false);
 });
 
 // Company Info Toggle
@@ -32,6 +41,7 @@ function showCompany(company) {
     event.target.classList.add('active');
 }
 
+// Hide Company Info
 function hideCompanyInfo() {
     document.querySelectorAll('.company-info').forEach(item => {
         item.classList.remove('active');
