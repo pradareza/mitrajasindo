@@ -157,9 +157,9 @@ img {
 }
 
 .logo img {
-    background-color: #f0f0f0; /* Light gray */
+    background-color: #f0f0f0; 
     padding: 6px;
-    border-radius: 50%; /* Makes it a circle */
+    border-radius: 50%; /* Makes circle */
     height: 4rem;
     width: 4rem;
     object-fit: contain;
@@ -264,7 +264,7 @@ img {
     padding-bottom: var(--space-3xl);
 }
 
-/* Enhanced Map Section */
+/* Map Section */
 .map-section {
     display: flex;
     flex-direction: column;
@@ -369,32 +369,7 @@ img {
 .hidden {
     display: none;
 }
-/* Responsive adjustments */
-@media (min-width: 768px) {
-    .location-buttons {
-        flex-wrap: nowrap;
-    }
-    
-    .map-container {
-        height: 30rem;
-    }
-}
 
-@media (min-width: 1024px) {
-    .map-locations {
-        grid-template-columns: 1fr;
-    }
-    
-    .map-container {
-        height: 35rem;
-    }
-}
-
-@media (min-width: 1280px) {
-    .map-container {
-        height: 22rem;
-    }
-}
 
 .contact-info-box {
     background: var(--bg-white);
@@ -629,6 +604,17 @@ img {
 }
 
 /* Responsive Styles */
+@media (max-width: 480px) {
+        /* Floating WA button */
+    .floating-WA a span {
+        display: none;
+    }
+    
+    .floating-WA a {
+        padding: 8px;
+    }
+}
+
 @media (min-width: 640px) {
     .contact-header h1 {
         font-size: 2.5rem;
@@ -655,6 +641,14 @@ img {
     .info-item i {
         font-size: 1.5rem;
     }
+
+        .location-buttons {
+        flex-wrap: nowrap;
+    }
+    
+    .map-container {
+        height: 30rem;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -666,13 +660,17 @@ img {
         grid-template-columns: repeat(3, 1fr);
     }
     
+    .map-locations {
+        grid-template-columns: 1fr;
+    }
+    
     .map-container {
-        height: 24rem;
+        height: 35rem;
     }
 }
 
 @media (min-width: 1280px) {
     .map-container {
-        height: 28rem;
+        height: 22rem;
     }
 }
