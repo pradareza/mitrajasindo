@@ -260,7 +260,6 @@ img {
     border-color: white;
 }
 
-/* Section Styling */
 .section-header {
     text-align: center;
     margin-bottom: 2rem;
@@ -359,20 +358,6 @@ img {
     font-size: 1.5rem;
 }
 
-@media (max-width: 767px) {
-    .carousel-track-container {
-        height: 300px;
-    }
-    
-    .carousel-arrow {
-        width: 30px;
-        height: 50px;
-    }
-    
-    .carousel-arrow i {
-        font-size: 1.2rem;
-    }
-}
 
 
 .static-promos {
@@ -806,4 +791,27 @@ img {
         .hero-content h1 {
             font-size: 2rem;
         }
+    .carousel-track-container {
+        height: 300px;
     }
+    
+    .carousel-arrow {
+        width: 30px;
+        height: 50px;
+    }
+    
+    .carousel-arrow i {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+        /* Floating WA button */
+    .floating-WA a span {
+        display: none;
+    }
+    
+    .floating-WA a {
+        padding: 8px;
+    }
+}
